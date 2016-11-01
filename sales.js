@@ -1,12 +1,34 @@
+//Axel Flores
 var runningTotal = 0.0;
 
 function addItem()
 {
   var newItem;
   newItem = document.getElementById("price").value;
+
   //IF newItem is not a number
   // THEN show an alert: "Enter price as a number"
+  if(isNaN(newItem))
+  {
+    window.alert ("Enter price as number");
+  }
   //OTHERWISE,
+
+  else {
+    newItem = Number(newItem);
+    console.log(newItem);
+    console.log(runningTotal);
+    runningTotal += newItem;
+    var dollars = asCurrency(runningTotal);
+    console.log(dollars);
+    document.getElementById("subtotal").innerHTML = dollars;
+    document.getElementById("price").innerHTML = "";
+    setCookie("preTax", runningTotal, 1);
+    
+  }
+}
+
+
   // update newItem to its value cast as a number
   // update runningTotal to be its value plus newItem
   // create a variable called dollars
@@ -14,7 +36,7 @@ function addItem()
   // update the innerHTML of the span with the id "subtotal" to be dollars
   // update the value of the input with the id "price" to be an empty string
   // update a cookie called "preTax" with the value of runningTotal
-}
+
 
 //takes a number and gives a string with the number displayed as USD currency
 function asCurrency(val)
